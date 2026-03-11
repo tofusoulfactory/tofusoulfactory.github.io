@@ -1,1 +1,393 @@
-my blog
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulFactory</title>
+    <meta name="description" content="A premium blog exploring tech, design, and life.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1', // Indigo 500
+                        secondary: '#ec4899', // Pink 500
+                        dark: '#020617', // Slate 950
+                        surface: 'rgba(30, 41, 59, 0.5)',
+                        surfaceHover: 'rgba(30, 41, 59, 0.8)',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-primary selection:text-white">
+
+    <!-- Background Orbs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div
+            class="absolute top-0 -left-10 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-70 animate-blob">
+        </div>
+        <div class="absolute top-0 -right-10 w-96 h-96 bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-70 animate-blob"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-32 left-20 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-70 animate-blob"
+            style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 border-b border-transparent bg-transparent py-4"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#"
+                class="font-display font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 hover:opacity-80 transition-opacity">
+                SoulFactory<span class="text-white">.</span>
+            </a>
+            <div class="hidden md:flex space-x-1 glass px-6 py-2 rounded-full">
+                <a href="#articles"
+                    class="px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200">Articles</a>
+                <a href="#projects"
+                    class="px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200">Projects</a>
+                <a href="#about"
+                    class="px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200">About</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://github.com/tchou" target="_blank"
+                    class="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-all focus:ring-2 focus:ring-primary outline-none">
+                    <i class="fa-brands fa-github text-xl"></i>
+                </a>
+            </div>
+            <button class="md:hidden text-slate-300 hover:text-white appearance-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main
+        class="relative z-10 pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 flex flex-col items-center justify-center min-h-[90vh]">
+        <div class="max-w-5xl mx-auto text-center w-full">
+            <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full mb-8 opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.1s;">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="text-xs font-semibold text-slate-300 tracking-wider uppercase">V1.0 Redesign Live</span>
+            </div>
+
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight mb-6 text-glow opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.2s;">
+                Crafting digital <br class="hidden md:block" />
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500">
+                    experiences.
+                </span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.3s;">
+                欢迎来到 SoulFactory。我在这里记录技术、设计原则和对数字世界的思考。探索现代前端工程与极致美学的交汇点。
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 opacity-0 animate-fade-in-up"
+                style="animation-delay: 0.4s;">
+                <a href="#articles"
+                    class="group relative px-8 py-4 bg-white text-slate-900 font-semibold rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)]">
+                    <span class="relative z-10 flex items-center">
+                        Explore Articles
+                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-slate-100 to-slate-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                </a>
+
+                <a href="#about"
+                    class="group px-8 py-4 glass text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 flex items-center">
+                    About the author
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 animate-bounce opacity-50 hidden md:block text-slate-400">
+            <i class="fa-solid fa-chevron-down text-xl"></i>
+        </div>
+    </main>
+
+    <!-- Content Section -->
+    <section id="articles" class="relative z-10 py-24 px-6 border-t border-white/5 bg-slate-950/40">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight">Latest Writing</h2>
+                    <p class="text-slate-400 text-lg font-light">Thoughts, tutorials, and insights gathered along the
+                        journey.</p>
+                </div>
+                <a href="#"
+                    class="hidden sm:flex text-indigo-400 hover:text-indigo-300 font-medium items-center group transition-colors pb-2">
+                    View all
+                    <i class="fa-solid fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article Card 1 -->
+                <article
+                    class="group glass-card rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.3)] hover:border-indigo-500/50 cursor-pointer flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-60">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+                            alt="Coding"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                        <div class="absolute top-4 left-4 z-20">
+                            <span
+                                class="px-3 py-1 text-xs font-semibold bg-indigo-500/20 backdrop-blur-md rounded-full text-indigo-200 border border-indigo-400/30">Engineering</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div
+                            class="flex items-center text-xs text-slate-400 mb-4 space-x-4 font-medium uppercase tracking-wider">
+                            <span><i class="fa-regular fa-calendar mr-1.5 opacity-70"></i>Oct 24, 2023</span>
+                            <span><i class="fa-regular fa-clock mr-1.5 opacity-70"></i>5 min read</span>
+                        </div>
+                        <h3
+                            class="font-display text-2xl font-bold mb-3 group-hover:text-indigo-300 transition-colors line-clamp-2 leading-snug">
+                            Building highly concurrent systems with Go and Redis
+                        </h3>
+                        <p class="text-slate-400 line-clamp-3 mb-8 font-light leading-relaxed flex-grow">
+                            A deep dive into architectural patterns for handling millions of requests using Go's
+                            goroutines and Redis caching layers to ensure scale and reliability.
+                        </p>
+                        <div class="flex items-center mt-auto pt-6 border-t border-white/5">
+                            <img src="https://ui-avatars.com/api/?name=Soul&background=6366f1&color=fff" alt="Author"
+                                class="w-8 h-8 rounded-full border border-white/20 mr-3">
+                            <span class="text-sm font-medium text-slate-300">SoulFactory</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 2 -->
+                <article
+                    class="group glass-card rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(236,72,153,0.3)] hover:border-pink-500/50 cursor-pointer flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-60">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80"
+                            alt="Design"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                        <div class="absolute top-4 left-4 z-20">
+                            <span
+                                class="px-3 py-1 text-xs font-semibold bg-pink-500/20 backdrop-blur-md rounded-full text-pink-200 border border-pink-400/30">Design
+                                System</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div
+                            class="flex items-center text-xs text-slate-400 mb-4 space-x-4 font-medium uppercase tracking-wider">
+                            <span><i class="fa-regular fa-calendar mr-1.5 opacity-70"></i>Sep 12, 2023</span>
+                            <span><i class="fa-regular fa-clock mr-1.5 opacity-70"></i>4 min read</span>
+                        </div>
+                        <h3
+                            class="font-display text-2xl font-bold mb-3 group-hover:text-pink-300 transition-colors line-clamp-2 leading-snug">
+                            The subtle art of micro-interactions in modern UI
+                        </h3>
+                        <p class="text-slate-400 line-clamp-3 mb-8 font-light leading-relaxed flex-grow">
+                            How small animations and feedback loops in your user interface can dramatically increase
+                            user engagement and perceived performance.
+                        </p>
+                        <div class="flex items-center mt-auto pt-6 border-t border-white/5">
+                            <img src="https://ui-avatars.com/api/?name=Soul&background=ec4899&color=fff" alt="Author"
+                                class="w-8 h-8 rounded-full border border-white/20 mr-3">
+                            <span class="text-sm font-medium text-slate-300">SoulFactory</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 3 -->
+                <article
+                    class="group glass-card rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.3)] hover:border-purple-500/50 cursor-pointer flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-60">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1618477388954-7852f32655cc?auto=format&fit=crop&w=800&q=80"
+                            alt="Architecture"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                        <div class="absolute top-4 left-4 z-20">
+                            <span
+                                class="px-3 py-1 text-xs font-semibold bg-purple-500/20 backdrop-blur-md rounded-full text-purple-200 border border-purple-400/30">Architecture</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div
+                            class="flex items-center text-xs text-slate-400 mb-4 space-x-4 font-medium uppercase tracking-wider">
+                            <span><i class="fa-regular fa-calendar mr-1.5 opacity-70"></i>Aug 05, 2023</span>
+                            <span><i class="fa-regular fa-clock mr-1.5 opacity-70"></i>8 min read</span>
+                        </div>
+                        <h3
+                            class="font-display text-2xl font-bold mb-3 group-hover:text-purple-300 transition-colors line-clamp-2 leading-snug">
+                            Decentralized Auth patterns for the next web
+                        </h3>
+                        <p class="text-slate-400 line-clamp-3 mb-8 font-light leading-relaxed flex-grow">
+                            Implementing secure and seamless authentication for applications without relying on
+                            traditional centralized identity providers.
+                        </p>
+                        <div class="flex items-center mt-auto pt-6 border-t border-white/5">
+                            <img src="https://ui-avatars.com/api/?name=Soul&background=a855f7&color=fff" alt="Author"
+                                class="w-8 h-8 rounded-full border border-white/20 mr-3">
+                            <span class="text-sm font-medium text-slate-300">SoulFactory</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="mt-16 text-center sm:hidden">
+                <a href="#"
+                    class="inline-flex items-center px-6 py-3 border border-white/20 rounded-full font-medium text-white bg-white/5 hover:bg-white/10 transition-colors">
+                    View all articles <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/10 bg-slate-950/80 pt-20 pb-10 px-6 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start mb-16">
+            <div class="mb-10 md:mb-0 text-center md:text-left">
+                <a href="#"
+                    class="font-display font-bold text-3xl tracking-tight text-white mb-4 block hover:text-indigo-400 transition-colors">
+                    SoulFactory.
+                </a>
+                <p class="text-slate-400 max-w-xs text-sm leading-relaxed">
+                    Designing the future of web experiences with modern tools and clean aesthetics. Built with passion
+                    and code.
+                </p>
+            </div>
+
+            <div class="flex space-x-4">
+                <a href="#"
+                    class="w-12 h-12 rounded-full glass hover:bg-indigo-500/20 flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:border-indigo-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <i class="fa-brands fa-twitter text-lg"></i>
+                </a>
+                <a href="#"
+                    class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-white/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="#"
+                    class="w-12 h-12 rounded-full glass hover:bg-pink-500/20 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <i class="fa-brands fa-dribbble text-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+            <p>&copy; 2024 SoulFactory. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0 font-medium tracking-wide">
+                <a href="#" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-300 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple sticky navbar scroll effect -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass', 'border-white/10');
+                navbar.classList.remove('bg-transparent', 'border-transparent', 'py-4');
+                navbar.classList.add('py-3');
+            } else {
+                navbar.classList.remove('glass', 'border-white/10', 'py-3');
+                navbar.classList.add('bg-transparent', 'border-transparent', 'py-4');
+            }
+        });
+    </script>
+</body>
+
+</html>
